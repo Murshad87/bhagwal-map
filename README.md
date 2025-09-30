@@ -3,18 +3,20 @@ This repository contains geographic data and an interactive map for **Bhagwal, K
 
 ---
 
-## 🗺️ Interactive Map
-
-You can view the live interactive map (using Leaflet) here:
-
-[🔗 Open Map](https://murshad87.github.io/bhagwal-map/map.html)
 
 ---
 
-## 📂 GeoJSON Data
+## 🗺️ Interactive Map
 
-- The file `bhagwal-map.geojson` stores the geographic features (points, boundaries, etc.).
-- You can view or edit it directly or via tools like [geojson.io](https://geojson.io).
+You can explore the map here:
+
+🔗 [**Open Map**](https://murshad87.github.io/bhagwal-map/map.html)
+
+This map uses [Leaflet.js](https://leafletjs.com) and loads features from the GeoJSON file:
+
+```js
+fetch('map (1).geojson')
+
 
 ---
 
