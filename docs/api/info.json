@@ -1,0 +1,22 @@
+{
+  "village": "Bhagwal",
+  "district": "Gujrat",
+  "tehsil": "Kharian",
+  "province": "Punjab",
+  "country": "Pakistan",
+  "location": {
+    "latitude": 32.8234,
+    "longitude": 73.9488
+  },
+  "population": 10669,
+  "postal_code": "50151",
+  "elevation_m": 281,
+  "official_website": "https://murshad87.github.io/bhagwal-map/",
+  "nearby_places": [
+    "Guliana",
+    "Chak Bakhtawar",
+    "Jand Sharif",
+    "Golra Hashim",
+    "Kotli Bajar"
+  ]
+}
