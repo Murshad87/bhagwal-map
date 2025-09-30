@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Bhagwal Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link 
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256‑XQoYMqMTK8LvdlxU/3p9GhT/xdDkPtw+v9Az9fWmg3s="
+    crossorigin=""
+  />
+  <style>
+    body, html { margin: 0; padding: 0; height: 100%; }
+    #map { height: 100%; width: 100%; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256‑o9N1jQbT6vFte36Zo5yPyDJq6IjGDJ5Q7t0LrXw0RL4="
+    crossorigin=""
+  ></script>
+
+  <script>
+    var map = L.map('map').setView([32.823, 73.949], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    fetch('map%20(1).geojson')
+      .then(response => response.json())
+      .then(data => {
+        L.geoJSON(data, {
+          onEachFeature: function (feature, layer) {
+            var name = feature.properties.name || "Unnamed area";
+            layer.bindPopup(name);
+          }
+        }).addTo(map);
+      });
+  </script>
+</body>
+</html>
