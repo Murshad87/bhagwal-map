@@ -32,7 +32,7 @@
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    fetch('map%20(1).geojson')
+    fetch('bhagwal-map.geojson')
       .then(response => response.json())
       .then(data => {
         L.geoJSON(data, {
