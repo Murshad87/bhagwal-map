@@ -4,44 +4,72 @@
   <meta charset="utf-8" />
   <title>Bhagwal Map</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Leaflet CSS -->
   <link 
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256‑XQoYMqMTK8LvdlxU/3p9GhT/xdDkPtw+v9Az9fWmg3s="
+    integrity="sha256-XQoYMqMTK8LvdlxU/3p9GhT/xdDkPtw+v9Az9fWmg3s="
     crossorigin=""
   />
+
   <style>
-    body, html { margin: 0; padding: 0; height: 100%; }
-    #map { height: 100%; width: 100%; }
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    #map {
+      width: 100%;
+      height: 100%;
+    }
   </style>
 </head>
 <body>
+
   <div id="map"></div>
 
+  <!-- Leaflet JS -->
   <script
     src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256‑o9N1jQbT6vFte36Zo5yPyDJq6IjGDJ5Q7t0LrXw0RL4="
+    integrity="sha256-o9N1jQbT6vFte36Zo5yPyDJq6IjGDJ5Q7t0LrXw0RL4="
     crossorigin=""
   ></script>
 
   <script>
+    // Initialize map
     var map = L.map('map').setView([32.823, 73.949], 13);
 
+    // Add OpenStreetMap tile layer
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
-      attribution: '&copy; OpenStreetMap contributors'
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
+    // Load GeoJSON data
     fetch('bhagwal-map.geojson')
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) throw new Error("GeoJSON file not found or invalid");
+        return response.json();
+      })
       .then(data => {
         L.geoJSON(data, {
           onEachFeature: function (feature, layer) {
-            var name = feature.properties.name || "Unnamed area";
+            const name = feature.properties?.name || "Unnamed Feature";
             layer.bindPopup(name);
+          },
+          style: {
+            color: "#0074D9",
+            weight: 2,
+            opacity: 1,
+            fillOpacity: 0.4
           }
         }).addTo(map);
+      })
+      .catch(error => {
+        alert("Error loading GeoJSON data: " + error.message);
+        console.error(error);
       });
   </script>
+
 </body>
 </html>
