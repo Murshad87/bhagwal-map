@@ -1,75 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Bhagwal Map</title>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Leaflet CSS -->
-  <link 
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-XQoYMqMTK8LvdlxU/3p9GhT/xdDkPtw+v9Az9fWmg3s="
-    crossorigin=""
-  />
-
+  <title>Bhagwal, Gujrat</title>
   <style>
-    html, body {
-      height: 100%;
+    body {
+      font-family: Arial, sans-serif;
       margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
     }
-    #map {
+    h1, h2 {
+      color: #333;
+    }
+    p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      color: #555;
+    }
+    .map-container {
+      margin: 20px 0;
+      text-align: center;
+    }
+    iframe {
       width: 100%;
-      height: 100%;
+      height: 450px;
+      border: none;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .section h2 {
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 5px;
+    }
+    .links a {
+      color: #007bff;
+      text-decoration: none;
+      margin-right: 10px;
+    }
+    .links a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
 
-  <div id="map"></div>
+  <header>
+    <h1>Welcome to Bhagwal, Gujrat</h1>
+    <p>Your gateway to exploring the rich heritage and vibrant community of Bhagwal.</p>
+  </header>
 
-  <!-- Leaflet JS -->
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-o9N1jQbT6vFte36Zo5yPyDJq6IjGDJ5Q7t0LrXw0RL4="
-    crossorigin=""
-  ></script>
+  <section class="map-container">
+    <h2>Location on Google Maps</h2>
+    <iframe src="https://www.google.com/maps/embed?pb=..."></iframe>
+  </section>
 
-  <script>
-    // Initialize map
-    var map = L.map('map').setView([32.823, 73.949], 13);
+  <section class="section">
+    <h2>Nearby Villages</h2>
+    <ul>
+      <li><a href="https://www.google.com/maps/place/Guliana,+Pakistan" target="_blank">Guliana</a></li>
+      <li><a href="https://www.google.com/maps/place/Golra+Hashim,+Pakistan" target="_blank">Golra Hashim</a></li>
+      <li><a href="https://www.google.com/maps/place/Kotla+Haji+Shah,+Pakistan" target="_blank">Kotla Haji Shah</a></li>
+      <li><a href="https://www.google.com/maps/place/Jhantla,+Pakistan" target="_blank">Jhantla</a></li>
+      <li><a href="https://www.google.com/maps/place/Shorian,+Pakistan" target="_blank">Shorian</a></li>
+      <li><a href="https://www.google.com/maps/place/Dham+Dhal+Gujjar,+Pakistan" target="_blank">Dham Dhal Gujjar</a></li>
+      <li><a href="https://www.google.com/maps/place/Lammay+Chak,+Pakistan" target="_blank">Lammay Chak</a></li>
+      <li><a href="https://www.google.com/maps/place/Bakhtawar,+Pakistan" target="_blank">Bakhtawar</a></li>
+      <li><a href="https://www.google.com/maps/place/Jand+Sharif,+Pakistan" target="_blank">Jand Sharif</a></li>
+    </ul>
+  </section>
 
-    // Add OpenStreetMap tile layer
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 18,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+  <section class="section">
+    <h2>Historical Significance</h2>
+    <p>Bhagwal has a rich history, with notable events such as...</p>
+  </section>
 
-    // Load GeoJSON data
-    fetch('map (1).geojson')
-      .then(response => {
-        if (!response.ok) throw new Error("GeoJSON file not found or invalid");
-        return response.json();
-      })
-      .then(data => {
-        L.geoJSON(data, {
-          onEachFeature: function (feature, layer) {
-            const name = feature.properties?.name || "Unnamed Feature";
-            layer.bindPopup(name);
-          },
-          style: {
-            color: "#0074D9",
-            weight: 2,
-            opacity: 1,
-            fillOpacity: 0.4
-          }
-        }).addTo(map);
-      })
-      .catch(error => {
-        alert("Error loading GeoJSON data: " + error.message);
-        console.error(error);
-      });
-  </script>
+  <section class="section">
+    <h2>Local Landmarks</h2>
+    <p>Discover the landmarks that make Bhagwal unique...</p>
+  </section>
+
+  <footer>
+    <p>For more information, visit the <a href="https://en.wikipedia.org/wiki/Bhagwal,_Gujrat" target="_blank">Wikipedia page for Bhagwal</a>.</p>
+  </footer>
 
 </body>
 </html>
